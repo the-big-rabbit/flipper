@@ -1,0 +1,34 @@
+<div id="{{ zone.name | clean }}" class="zone presentation {{ zone.subtype }} 1er">
+    <div class="cfluid">
+        <div class="text" data-aos="fade-right" data-aos-delay="0">
+            <div class="area">
+                <h{{ zone.typehead}} class="titre" >{{zone.detail(locale).name}}</h{{ zone.typehead}}>
+                <h3 class="sstitre">{{ zone.detail(locale).title }}</h3>
+                <div class="desc" >
+                    {{zone.detail(locale).description | raw}}
+                </div>
+                {% if zone.pageLink is not null %}
+                    <a class="button"  href="{{ path('page',{'_locale':locale,'slug':zone.pageLink.url(locale).url }) }}"
+                            title="{{ zone.pageLink.detail(locale).title }}">
+                        {{ zone.pageLink.detail(locale).title }}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <ul class="image" >
+            {% for photo in zone.photos %}
+                <li class="grid--{{loop.index}}" data-aos="fade-up" data-aos-delay="{{loop.index}}00">
+                    <a href="{{ path('generatePhoto',{'id':photo.id,'width':2000}) }}" alt="{{ zone.detail(locale).title }}"  data-id="{{ photo.id }}" data-name="{{ fileName(photo,locale) }}" class="fancy photo" data-fancybox="gallery">
+                        <img alt="{{ photo.detail(locale).title }}" />
+                        {% if photo.detail(locale).title %}
+                            <div class="hover">
+                                <div class="sstitre">{{photo.detail(locale).title}}</div>
+                                <div class="description">{{photo.detail(locale).description | raw}}</div>
+                            </div>
+                        {% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

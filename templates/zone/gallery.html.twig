@@ -1,0 +1,23 @@
+<!-- Necessite packery -->
+<div class="gallery" id="{{ zone.detail(locale).slug }}">
+    <div class="grid">
+        {% for video in zone.videos %}
+            <div class="grid-item apparition">
+                <a class="photo video absolute_top_left" data-fancybox data-width="1920" data-height="1080" data-fancybox="gallery" href="{{ asset('uploads/' ~ video.path) }}">
+                <i class="fas fa-play"></i>
+                    <video> 
+                        <source src="{{ asset('uploads/' ~ video.path) }}">
+                    </video>
+                </a>
+            </div>
+        {% endfor %}
+        {% for photo in zone.photos %}
+            <div class="grid-item apparition">
+                <a class="photo fancy absolute_top_left" data-id="{{ photo.id }}" href="{{ path('generatePhoto',{'id':photo.id,'width':2000 }) }}" data-fancybox="gallery">
+
+                    <img alt="{{ zone.detail(locale).title }}"/>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>

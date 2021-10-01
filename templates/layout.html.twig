@@ -1,0 +1,99 @@
+{% trans_default_domain 'app' %}
+<!doctype html>
+<html lang="{{ locale }}">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ infos.analyticsId }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '{{ infos.analyticsId }}');
+    </script>
+
+    <meta charset="utf-8"/>
+    <title>{{ (page.detail(locale).metaTitle is null) ? (page.detail(locale).title ~ ' | ' ~ infos.name ~' - ' ~infos.city) : page.detail(locale).metaTitle  }}</title>
+    <meta name="Description" content="{{ getFirstText(page,locale) | striptags | raw }}"/>
+    <meta name="viewport" content="width=device-width"/>
+    {# Transformer les fichiers less en fichier css a la mise en ligne#}
+    {% if app.environment == 'prod' %}
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+    {% else %}
+    <link href="{{ asset('css/style.less') }}?v={{ random() }}" rel="stylesheet/less"/>
+        <script src="{{ asset('js/lib/less.min.js') }}"></script>
+        <script>less = { useFileCache: false }</script>
+    {% endif %}
+
+    {# Enlever en prod #}
+    {% block css %}
+    {% endblock css %}
+    <script type="text/javascript">
+        var webpActive = {{ webpActiveInImagick() ? 'true' : 'false' }};
+        var root = "{{ asset('') }}";
+        var lang_get = "{{ locale }}";
+        let dependances = [
+            {
+                src: "{{ asset('js/edc.js') }}",
+                require: [
+                    {
+                        name: "jQuery",
+                        sources: [
+                            {
+                                src: "{{ asset('js/lib/jquery/jquery.min.js') }}"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                src: "{{ asset('js/header.js') }}"
+            },
+            {
+                src: "{{ asset('js/lib/aos-master/dist/aos.css') }}",
+                preload: true
+            },
+            {
+                src: "{{ asset('js/lib/aos-master/dist/aos.js') }}",
+                callback: () => {
+                    AOS.init({once: true, duration: 800, disable: 'phone', offset: 250});
+                }
+            },
+            {% if jsZones is defined %}
+                {% for zone in jsZones %}
+                    {
+                        src: "{{ asset('js/zone/'~zone~'.js') }}",
+                        require: [
+                            {
+                                sources: [
+                                    {
+                                        src: "{{ asset('js/lib/swiper/js/swiper.min.js') }}"
+                                    },
+                                    {
+                                        src: "{{ asset('js/lib/swiper/css/swiper.min.css') }}",
+                                        preload:true
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+
+                {% endfor %}
+            {% endif %}
+
+            {% block dep %}
+            {% endblock dep %}
+        ];
+    </script>
+    <script src="{{ asset('js/lazyLoad.min.js') }}"></script>
+</head>
+
+<body class="">
+    {% include 'header.html.twig' %}
+    {% block content %}
+    {% endblock %}
+    {% include 'footer.html.twig' %}
+
+    <script src="{{ asset('js/load.js') }}" type="text/javascript"></script>
+</body>
+</html>

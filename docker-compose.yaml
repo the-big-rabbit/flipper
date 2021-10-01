@@ -1,0 +1,27 @@
+version: '3'
+services:
+  database:
+    image: mysql:5.7
+    volumes: 
+      - ./var/docker/database:/var/lib/mysql
+    restart: always
+    environment: 
+        MYSQL_USERNAME: root
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: nostra
+    ports:
+        - 33068:3306
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - "database:db"
+    environment:
+        MYSQL_USERNAME: root
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: nostra
+    volumes:
+      - ./var/docker/php-ini/php.ini:/usr/local/etc/php/php.ini
+    restart: always
+    ports:
+      - 8001:80
+    

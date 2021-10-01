@@ -1,0 +1,13 @@
+{
+  "name": "NeptuneFront",
+  "dependencies": {
+    "jquery": "latest",
+    "fancybox": "latest",
+    "OwlCarousel2/OwlCarousel2" : "latest",
+    "masonry" : "latest",
+    "font-awsome" :"latest",
+    "superfish" :"latest",
+    "santanas2b/script-loader" : "latest",
+    "jquery-mmenu" : "latest"
+  }
+}

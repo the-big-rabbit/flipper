@@ -1,0 +1,64 @@
+<footer>
+	<ul class="ul">
+		<li class="col">
+			<div class="logo">
+            <h2>Cors'Flip</h2>
+        {#<img src="{{asset('img/logo.png')}}" class="lazy" alt="logo">#}
+			</div>
+
+		</li>
+		<li class="col">
+			<div class="rub">Informations</div>
+			<ul class="coords">
+				{% for zone in page.zones %}
+					<li>
+						{% if zone.detail(locale).name != 'Locations' %}
+							<a href="#{{ zone.name | clean}}">{{ zone.detail(locale).name }}</a>
+						{% endif %}
+
+					</li>
+				{% endfor %}
+			</ul>
+		</li>
+
+		<li class="col">
+			<div class="rub">Contact</div>
+			<ul class="coords">
+				<li>
+					<a href="tel:{{ infos.tel }}"><strong>{{ "Tel" | trans }} :</strong> {{ infos.tel }}</a>
+          	<a href="mailto:{{ infos.mail }}"><strong>{{ "Mail" | trans }} :</strong> {{ infos.mail }}</a>
+				</li>
+
+				<li>
+					{{ infos.adress }}<br />
+					{{ infos.cp }} {{ infos.city }}
+				</li>
+				<li>
+					<ul class="social">
+						<li><a class="facebook" target="_blank" href="{{ infos.facebook }}"><i class="fab fa-facebook-square"></i></a></li>
+						<li><a class="insta" target="_blank" href="{{ infos.insta }}"><i class="fab fa-instagram"></i></a></li>
+{#
+						<li><a class="twitter" target="_blank" href="{{ infos.twitter }}"><i class="fab fa-twitter-square"></i></a></li>
+
+						<li><a class="tripadvisor" target="_blank" href="https://www.tripadvisor.fr/Hotel_Review-g187141-d9804329-Reviews-Hotel_Des_Gouverneurs-Bastia_Haute_Corse_Corsica.html"><i class="fab fa-tripadvisor"></i></a></li>
+#}
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li class="col">
+			<div class="rub">Réalisation</div>
+			<a class="rea" target="_blank">
+				ScyLabs
+			</a>
+			<ul class="coords">
+	
+      <li>
+          <a href="{{ path('mention') }}">{{ "Mentions légales" | trans }}</a>
+    </li>
+	<li>    	<div>	<i class="far fa-copyright copy"></i>2020</div></li>
+
+			</ul>
+		</li>
+	</ul>
+</footer>

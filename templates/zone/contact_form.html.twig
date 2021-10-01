@@ -1,0 +1,19 @@
+<div id="{{ zone.name | clean }}" class="zone contact">
+	
+	<div class="bottom">
+		<div class="form">
+			
+			<div class="container">
+				<h2 class="title titre">{{ zone.detail(locale).title | raw }}</h2>
+		
+        {{ render(controller(
+            'App\\Controller\\ContactController::contact',
+            {
+                '_locale':locale,
+                'type' : 'contact'
+            }
+        )) }}
+			</div>
+		</div>
+	</div>
+</div>

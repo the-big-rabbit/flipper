@@ -1,0 +1,8 @@
+<div id="{{ zone.name  | clean}}" class="texte zone">
+    <div class="box">
+        <div class="box flex_0">
+            <h2>{{ zone.detail(locale).title }}</h2>
+            <p>{{ zone.detail(locale).description | raw }}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div id="{{ zone.name | clean }}" class="photo_texte zone {{ zone.subType }}">
+    <div class="big_container">
+        <div class="flex">
+            {% if zone.photos.count > 0 or zone.subtype == 'subtype3' %}
+                <div class="left">
+                    {% if zone.subtype == 'subtype3' %}
+                        {{ infos.gmap | raw}}
+                    {% endif %}
+                    {% if zone.subtype != 'subtype3'%}
+                        {% for photo in zone.photos | slice(0,1) %}
+                            <a href="{{ path('generatePhoto',{'id':photo.id,'width':2500}) }}" class="photo flex fancy" data-id="{{ photo.id }}">
+                                <div class="box">
+                                    <img />
+                                </div>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div class="right">
+                <div class="box">
+                    <h{{ zone.typeHead }} class="head">{{ zone.detail(locale).title }}</h{{ zone.typeHead }}>
+                    <div class="description">
+                        {% if zone.subtype != 'subtype3'%}
+                            {{ zone.detail(locale).description | raw }}
+                        {% else %}
+                            {{ render(controller(
+                                'App\\Controller\\ContactController::contact',
+                                {'_locale':locale}
+                            )) }}
+                        {% endif %}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

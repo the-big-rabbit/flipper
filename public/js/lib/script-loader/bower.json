@@ -1,0 +1,34 @@
+{
+	"name": "script-loader",
+	"description": "Script async loading",
+	"main": [
+		"dist/loadScript.js"
+	],
+	"dependencies": {
+	},
+	"devDependencies": {
+	},
+	"moduleType": [
+		"javascript"
+	],
+	"keywords": [
+		"chargement",
+		"charge",
+		"javascript",
+		"css",
+		"loading",
+		"async"
+	],
+	"authors": [
+		"Alexandre Sciacca alexandre.sciacca@gmail.com"
+	],
+	"license": "MIT",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"private": false
+}

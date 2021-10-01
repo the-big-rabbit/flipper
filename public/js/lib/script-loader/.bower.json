@@ -1,0 +1,44 @@
+{
+  "name": "script-loader",
+  "description": "Script async loading",
+  "main": [
+    "dist/loadScript.js"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "moduleType": [
+    "javascript"
+  ],
+  "keywords": [
+    "chargement",
+    "charge",
+    "javascript",
+    "css",
+    "loading",
+    "async"
+  ],
+  "authors": [
+    "Alexandre Sciacca alexandre.sciacca@gmail.com"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": false,
+  "homepage": "https://github.com/santanas2b/script-loader",
+  "version": "1.0.0",
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.0",
+    "commit": "4662c4a8e2c0fe75cc1a5a8dd20b3358d423b243"
+  },
+  "_source": "https://github.com/santanas2b/script-loader.git",
+  "_target": "^1.0.0",
+  "_originalSource": "santanas2b/script-loader",
+  "_direct": true
+}

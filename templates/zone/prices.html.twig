@@ -1,0 +1,35 @@
+<div id="{{ zone.name | clean }}" class="prices zone">
+    <h{{ zone.typeHead }} class="title titre">{{ zone.detail(locale).title }}</h{{ zone.typeHead }}>
+    <div class="desc">
+        {{ zone.detail(locale).description | raw }}
+    </div>
+    <div class="cards">
+        {% set elementTypes = (zone.pageLink is not null) ? zone.pageLink.elementTypes : page.elementTypes %}
+        <div class="card">
+
+
+            <div class="grid">
+        {% for elementType in elementTypes %}
+
+            {% for element in elementType.elements %}
+                <a href="{% for photo in element.photos | slice(0,1) %}{{ path('generatePhoto',{'id':photo.id,'width':2000}) }}{% endfor %}"  class="element fancy" data-caption="{{ element.detail(locale).title ~ ' : ' ~ element.detail(locale).description | raw }}" data-fancybox="carte">
+                    <div class="box">
+                        {% for photo in element.photos | slice(0,1) %}
+                            <div class="photo" data-id="{{ photo.id }}" data-name="{{ fileName(photo,locale) }}">
+                                <img alt="{{ photo.detail(locale).title }}"/>
+                            </div>
+                        {% endfor %}
+                        <div class="content">
+                            <h{{ zone.typeHead + 2  }} class="title">{{ element.detail(locale).title }}</h{{ zone.typeHead + 2 }}>
+                            <div class="description">{{ element.detail(locale).description | raw }}</div>
+                            <div class="price">{{ element.price }}</div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+
+        {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

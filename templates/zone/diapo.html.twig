@@ -1,0 +1,42 @@
+<div id="{{ zone.name | clean }}" class="diapo zone {{ zone.subType }}" id="{{ zone.name }}-{{ random(992,2704) }}">
+    <div class="limit">
+        <div class="title_box">
+            <div class="title">
+                <div class="boxed">
+                    <div class="deco"></div>
+                    <h1>{{ zone.detail(locale).title | raw }}</h1>
+                    {{ zone.detail(locale).description | raw }}
+                </div>
+                <span class="button white">
+                    <a href="tel:{{ infos.tel | replace({' ':''})}}">
+                        <i class="fal fa-phone"></i> {{ infos.tel }}
+                    </a>
+                </span>
+               
+            </div>
+        </div>
+        {% if zone.videos.count %}
+            <div class="video_box">
+                {% for video in zone.videos | slice(0,1) %}
+                <video  muted autoplay loop>
+                    <source src="{{ asset('uploads/'~ video.path ) }}"/>
+                </video>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for photo in zone.photos %}
+                        <div class="swiper-slide">
+                            <div class="photo" data-id="{{ photo.id }}" data-name="{{ fileName(photo,locale) }}">
+                                <img alt="{{ photo.detail(locale).title }}">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        {% endif %}
+        <span class="scrolldown"></span>
+    </div>
+</div>

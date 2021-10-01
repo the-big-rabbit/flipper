@@ -1,0 +1,19 @@
+
+<header>
+    {#
+    <img data-src="{{ asset('img/logo.png') }}" class="lazy logo" alt="Logo {{ infos.name }}"/>
+    #}
+    <input id="burger" type="checkbox" />
+    <label for="burger" class="burger">
+        <span id="line_before"></span>
+    </label>
+    <nav>
+        <ul id="menu">
+            {% for zone in page.zones %}
+                <li>
+                    <a href="#{{ zone.detail(locale).name | clean }}">{{ zone.detail(locale).name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</header>
